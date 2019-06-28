@@ -12,12 +12,27 @@ class App extends React.Component {
       count: 0
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick(times) {
     this.setState(prevState => {
       return {
         count: prevState.count + times
+      }
+    })
+  }
+
+  handleChange(id) {
+    this.setState(prevState => {
+      const updateTodos = prevState.todos.map(e => {
+        if (e.id === id) {
+          e.completed = !e.completed
+        }
+        return e;
+      })
+      return {
+        todos: updateTodos
       }
     })
   }
