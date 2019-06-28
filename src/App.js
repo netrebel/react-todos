@@ -14,20 +14,20 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
+  handleClick(times) {
     this.setState(prevState => {
       return {
-        count: prevState.count + 1
+        count: prevState.count + times
       }
     })
   }
 
   render() {
-    const todoItems = this.state.todos.map(item => <TodoItem key={item.id} item={item} />)
+    const todoItems = this.state.todos.map(item => <TodoItem key={item.id} item={item} handleChange={this.handleChange} />)
     return (
       <div className="todo-list">
         <h1>{this.state.count}</h1>
-        <button onClick={this.handleClick}>Click!</button>
+        <button onClick={() => this.handleClick(1)}>Click +1!</button>
         {todoItems}
       </div>
     );
